@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,9 @@ import android.widget.ImageView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import java.util.List;
 
@@ -39,7 +42,17 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         PhotoJson item = mData.get(position);
+
+        Transformation transformation = new RoundedTransformationBuilder()
+                //.borderColor(Color.BLACK)
+                //.borderWidthDp(3)
+                .cornerRadiusDp(18)
+                .oval(false)
+                .build();
+
+
         Picasso.get().load(item.getUrls().getSmall())
+                .transform(transformation)
                 .into(holder.myImage);
         //holder.myTextView.setText(animal);
     }
