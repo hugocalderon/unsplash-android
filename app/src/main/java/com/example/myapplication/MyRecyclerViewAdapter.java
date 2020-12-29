@@ -1,17 +1,23 @@
 package com.example.myapplication;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.retrofit.models.PhotoJson;
+import com.google.gson.Gson;
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
@@ -26,11 +32,16 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     private List<PhotoJson> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    private  Activity context;
+    SharedPreferences settings;
+    SharedPreferences.Editor edit;
 
     // data is passed into the constructor
-    MyRecyclerViewAdapter(Activity context, List<PhotoJson> data) {
+    MyRecyclerViewAdapter(Activity context, SharedPreferences settings, List<PhotoJson> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.context = context;
+        this.settings = settings;
     }
 
     // inflates the row layout from xml when needed
@@ -43,7 +54,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        PhotoJson item = mData.get(position);
+        final PhotoJson item = mData.get(position);
 
         Transformation transformation = new RoundedTransformationBuilder()
                 //.borderColor(Color.BLACK)
@@ -52,10 +63,43 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
                 .oval(false)
                 .build();
 
-
         Picasso.get().load(item.getUrls().getSmall())
                 .transform(transformation)
                 .into(holder.myImage);
+
+        holder.myImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(context,R.style.myDialogStyle);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.info_image);
+               //dialog.setTitle("Información");
+                Button btnClose = (Button) dialog.findViewById(R.id.btn);
+                ImageView imageView = dialog.findViewById(R.id.image);
+                TextView textView = dialog.findViewById(R.id.info_text);
+
+                btnClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                Picasso.get().load(item.getUrls().getRegular())
+                        .transform(transformation)
+                        .into(imageView);
+                dialog.show();
+
+
+                textView.setText(
+                        item.getDescription() != null ? item.getDescription() : item.getAlt_description() + " \n\n\n\nAutor: " + item.getUser().getName() +
+                        "\nLikes: " + item.getLikes()
+                );
+
+
+
+            }
+        });
 
         Picasso.get().load(item.getUser().getProfile_image().getMedium())
                 .transform(transformation)
@@ -65,9 +109,31 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         holder.tvLikes.setText(item.getLikes());
         holder.tvUsername.setText(item.getUser().getUsername());
 
-        if(true){
+        String strJson = settings.getString(item.getId(),"0");
+        /*Gson gson = new Gson();
+        PhotoJson photoJson = gson.fromJson(strJson, PhotoJson.class);*/
+        if(strJson != null && strJson != "0"){
             holder.btnFavorite.setChecked(true);
         }
+
+        holder.btnFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //edit = settings.edit();
+                SharedPreferences.Editor edit = settings.edit();
+                if(holder.btnFavorite.isChecked()){
+                        ///Guardar
+                    edit.putString(item.getId(),new Gson().toJson(item));
+                    edit.apply();
+                    Toast.makeText(context, "Guardado a favoritos " , Toast.LENGTH_SHORT).show();
+                }else {
+                       // Borrar
+                    edit.remove(item.getId());
+                    edit.apply();
+                }
+
+            }
+        });
     }
 
     // total number of rows

@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.myapplication.retrofit.APIClient;
@@ -28,10 +29,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.myapplication.utils.MyConfig.SHARED_NAME;
+
 public class ScrollingActivity extends AppCompatActivity {
     MyRecyclerViewAdapter mAdapter;
     RecyclerView main_recycler_view;
     Activity activity;
+    SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,8 @@ public class ScrollingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         toolBarLayout.setTitle(getTitle());
+
+        settings = getSharedPreferences(SHARED_NAME, MODE_PRIVATE);
 
         activity = ScrollingActivity.this;
         main_recycler_view = (RecyclerView) findViewById(R.id.main_recycler_view);
@@ -55,7 +61,7 @@ public class ScrollingActivity extends AppCompatActivity {
                     if (response.code() == 200) {
                         List<PhotoJson> photos = (List<PhotoJson>) response.body();
 
-                        mAdapter = new MyRecyclerViewAdapter(activity,photos);
+                        mAdapter = new MyRecyclerViewAdapter(activity,settings,photos);
                         main_recycler_view.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
                         //main_recycler_view.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
                         //mAdapter.setClickListener(this);
