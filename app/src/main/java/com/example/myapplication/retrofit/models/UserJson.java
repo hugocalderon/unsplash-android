@@ -4,6 +4,7 @@ public class UserJson {
     private String name;
     private String username;
     private ProfileImagesJson profile_image;
+    private String instagram_username;
 
     public UserJson() {
     }
@@ -30,5 +31,13 @@ public class UserJson {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getInstagram_username() {
+        return instagram_username;
+    }
+
+    public void setInstagram_username(String instagram_username) {
+        this.instagram_username = instagram_username;
     }
 }

@@ -93,7 +93,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
                 textView.setText(
                         item.getDescription() != null ? item.getDescription() : item.getAlt_description() + " \n\n\n\nAutor: " + item.getUser().getName() +
-                        "\nLikes: " + item.getLikes()
+                        "\nLikes: " + item.getLikes() +
+                        "\nInstagram: " + item.getUser().getInstagram_username()
                 );
 
 
