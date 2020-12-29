@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -63,6 +64,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         //holder.myTextView.setText(animal);
         holder.tvLikes.setText(item.getLikes());
         holder.tvUsername.setText(item.getUser().getUsername());
+
+        if(true){
+            holder.btnFavorite.setChecked(true);
+        }
     }
 
     // total number of rows
@@ -78,6 +83,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         ImageView myImage;
         ImageView imageViewUser;
         TextView tvLikes,tvUsername;
+        ToggleButton btnFavorite;
 
 
         ViewHolder(View itemView) {
@@ -86,6 +92,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             imageViewUser = itemView.findViewById(R.id.stat_2);
             tvLikes = itemView.findViewById(R.id.stat_1);
             tvUsername = itemView.findViewById(R.id.stat_detail_2);
+            btnFavorite = itemView.findViewById(R.id.stat_3);
             itemView.setOnClickListener(this);
         }
 
