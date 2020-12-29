@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.SharedPreferences;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,6 +78,9 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
                 Button btnClose = (Button) dialog.findViewById(R.id.btn);
                 ImageView imageView = dialog.findViewById(R.id.image);
                 TextView textView = dialog.findViewById(R.id.info_text);
+                TextView autorInfo = dialog.findViewById(R.id.autor_info);
+                TextView perfil = dialog.findViewById(R.id.perfil);
+                ImageView autor = dialog.findViewById(R.id.autor);
 
                 btnClose.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -88,14 +92,29 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
                 Picasso.get().load(item.getUrls().getRegular())
                         .transform(transformation)
                         .into(imageView);
-                dialog.show();
+
 
 
                 textView.setText(
-                        item.getDescription() != null ? item.getDescription() : item.getAlt_description() + " \n\n\n\nAutor: " + item.getUser().getName() +
-                        "\nLikes: " + item.getLikes() +
-                        "\nInstagram: " + item.getUser().getInstagram_username()
+                        item.getDescription() != null ? item.getDescription() : item.getAlt_description()
                 );
+
+
+                Picasso.get().load(item.getUser().getProfile_image().getLarge())
+                        .transform(transformation)
+                        .into(autor);
+
+
+                autorInfo.setText(" \n\nNombre: " + item.getUser().getName() +
+                        //"\nLikes: " + item.getLikes() +
+                        "\nInstagram: " + item.getUser().getInstagram_username());
+
+                //perfil.setMovementMethod(LinkMovementMethod.getInstance());
+                perfil.setText(item.getUser().getLinks().getHtml());
+
+
+
+                dialog.show();
 
 
 

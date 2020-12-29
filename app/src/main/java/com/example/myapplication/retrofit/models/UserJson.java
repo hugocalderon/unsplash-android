@@ -5,6 +5,7 @@ public class UserJson {
     private String username;
     private ProfileImagesJson profile_image;
     private String instagram_username;
+    private linksJson links;
 
     public UserJson() {
     }
@@ -39,5 +40,13 @@ public class UserJson {
 
     public void setInstagram_username(String instagram_username) {
         this.instagram_username = instagram_username;
+    }
+
+    public linksJson getLinks() {
+        return links;
+    }
+
+    public void setLinks(linksJson links) {
+        this.links = links;
     }
 }
