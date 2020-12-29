@@ -1,15 +1,16 @@
-package retrofit;
+package com.example.myapplication.retrofit;
 
-import com.unsplash.pickerandroid.photopicker.data.UnsplashPhoto;
+import com.example.myapplication.retrofit.models.PhotoJson;
 
 import java.util.List;
 
-import retrofit.models.PhotoJson;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Query;
-import static utils.MyConfig.URL_SERVER;
+
+import static com.example.myapplication.utils.MyConfig.URL_SERVER;
 
 /**
  * Created by 503consulting on 20/9/17.

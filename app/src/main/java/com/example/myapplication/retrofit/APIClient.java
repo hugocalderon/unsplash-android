@@ -1,11 +1,10 @@
-package retrofit;
+package com.example.myapplication.retrofit;
 
-import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static utils.MyConfig.URL_SERVER;
+import static com.example.myapplication.utils.MyConfig.URL_SERVER;
 
 
 public class APIClient {

@@ -1,4 +1,4 @@
-package retrofit.models;
+package com.example.myapplication.retrofit.models;
 
 /**
  * Created by PERSONAL on 22/10/2018.

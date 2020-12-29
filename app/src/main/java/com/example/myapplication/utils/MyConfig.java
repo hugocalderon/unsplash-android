@@ -1,7 +1,4 @@
-package utils;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+package com.example.myapplication.utils;
 
 /**
  * Created by administrador on 08-26-14.

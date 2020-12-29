@@ -1,4 +1,4 @@
-package retrofit.models;
+package com.example.myapplication.retrofit.models;
 
 public class UserJson {
     private String name;
