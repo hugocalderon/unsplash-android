@@ -3,4 +3,6 @@
     <string name="single_selection">Single selection</string>
     <string name="multiple_selection">Multiple selection</string>
     <string name="pick">Pick</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
 </resources>
