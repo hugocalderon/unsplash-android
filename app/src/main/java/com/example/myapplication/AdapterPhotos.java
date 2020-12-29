@@ -3,7 +3,6 @@ package com.example.myapplication;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.SharedPreferences;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +27,7 @@ import java.util.List;
 
 
 
-public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
+public class AdapterPhotos extends RecyclerView.Adapter<AdapterPhotos.ViewHolder> {
 
     private List<PhotoJson> mData;
     private LayoutInflater mInflater;
@@ -38,7 +37,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     SharedPreferences.Editor edit;
 
     // data is passed into the constructor
-    MyRecyclerViewAdapter(Activity context, SharedPreferences settings, List<PhotoJson> data) {
+    AdapterPhotos(Activity context, SharedPreferences settings, List<PhotoJson> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
         this.context = context;

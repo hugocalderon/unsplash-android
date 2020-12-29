@@ -9,8 +9,6 @@ import com.example.myapplication.retrofit.APIClient;
 import com.example.myapplication.retrofit.APIInterface;
 import com.example.myapplication.retrofit.models.PhotoJson;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -18,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -32,7 +29,7 @@ import retrofit2.Response;
 import static com.example.myapplication.utils.MyConfig.SHARED_NAME;
 
 public class ScrollingActivity extends AppCompatActivity {
-    MyRecyclerViewAdapter mAdapter;
+    AdapterPhotos mAdapter;
     RecyclerView main_recycler_view;
     Activity activity;
     SharedPreferences settings;
@@ -61,7 +58,7 @@ public class ScrollingActivity extends AppCompatActivity {
                     if (response.code() == 200) {
                         List<PhotoJson> photos = (List<PhotoJson>) response.body();
 
-                        mAdapter = new MyRecyclerViewAdapter(activity,settings,photos);
+                        mAdapter = new AdapterPhotos(activity,settings,photos);
                         main_recycler_view.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
                         //main_recycler_view.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
                         //mAdapter.setClickListener(this);
