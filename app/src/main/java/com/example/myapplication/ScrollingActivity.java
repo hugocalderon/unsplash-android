@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.myapplication.retrofit.APIClient;
@@ -55,7 +56,7 @@ public class ScrollingActivity extends AppCompatActivity {
                         List<PhotoJson> photos = (List<PhotoJson>) response.body();
 
                         mAdapter = new MyRecyclerViewAdapter(activity,photos);
-                        main_recycler_view.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+                        main_recycler_view.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
                         //main_recycler_view.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
                         //mAdapter.setClickListener(this);
                         main_recycler_view.setAdapter(mAdapter);
@@ -96,6 +97,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(activity,FavoriteActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,7 +47,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         Transformation transformation = new RoundedTransformationBuilder()
                 //.borderColor(Color.BLACK)
                 //.borderWidthDp(3)
-                .cornerRadiusDp(18)
+                .cornerRadiusDp(6)
                 .oval(false)
                 .build();
 
@@ -54,7 +55,14 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         Picasso.get().load(item.getUrls().getSmall())
                 .transform(transformation)
                 .into(holder.myImage);
+
+        Picasso.get().load(item.getUser().getProfile_image().getMedium())
+                .transform(transformation)
+                .into(holder.imageViewUser);
+
         //holder.myTextView.setText(animal);
+        holder.tvLikes.setText(item.getLikes());
+        holder.tvUsername.setText(item.getUser().getUsername());
     }
 
     // total number of rows
@@ -68,11 +76,16 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView myImage;
+        ImageView imageViewUser;
+        TextView tvLikes,tvUsername;
 
 
         ViewHolder(View itemView) {
             super(itemView);
             myImage = itemView.findViewById(R.id.item_photo_iv);
+            imageViewUser = itemView.findViewById(R.id.stat_2);
+            tvLikes = itemView.findViewById(R.id.stat_1);
+            tvUsername = itemView.findViewById(R.id.stat_detail_2);
             itemView.setOnClickListener(this);
         }
 

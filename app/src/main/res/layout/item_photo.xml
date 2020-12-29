@@ -19,4 +19,112 @@
             android:layout_width="0dp"
             android:adjustViewBounds="true"
             android:layout_height="wrap_content"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingBottom="6dp"
+            android:background="@drawable/main_header_selector">
+
+            <TextView
+                android:id="@+id/stat_1"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="10"
+                android:textColor="#ccc"
+                android:textSize="22sp"
+                app:layout_constraintTop_toTopOf="@+id/stat_2"
+                app:layout_constraintEnd_toStartOf="@+id/divider_1" />
+
+            <TextView
+                android:id="@+id/stat_detail_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Likes"
+                android:textColor="#ccc"
+                android:textSize="12sp"
+                app:layout_constraintTop_toBottomOf="@+id/stat_1"
+                app:layout_constraintStart_toStartOf="@+id/stat_1"
+                app:layout_constraintEnd_toEndOf="@+id/stat_1"
+                />
+
+            <View
+                android:id="@+id/divider_1"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="16dp"
+                android:background="#777"
+                app:layout_constraintTop_toTopOf="@+id/stat_2"
+                app:layout_constraintEnd_toStartOf="@+id/stat_2"
+                app:layout_constraintBottom_toBottomOf="@+id/stat_detail_2" />
+
+            <ImageView
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/stat_2"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="#ccc"
+                android:textSize="22sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/stat_detail_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="Calories Burned"
+                android:textColor="#ccc"
+                android:textSize="12sp"
+                app:layout_constraintTop_toBottomOf="@+id/stat_2"
+                app:layout_constraintStart_toStartOf="@+id/stat_2"
+                app:layout_constraintEnd_toEndOf="@+id/stat_2" />
+
+            <View
+                android:id="@+id/divider_2"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:background="#777"
+                app:layout_constraintBottom_toBottomOf="@+id/stat_detail_2"
+                app:layout_constraintStart_toEndOf="@+id/stat_2"
+                app:layout_constraintTop_toTopOf="@+id/stat_2" />
+
+            <ImageButton
+                android:id="@+id/stat_3"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="3200"
+                android:textColor="#ccc"
+                android:textSize="22sp"
+                app:layout_constraintTop_toTopOf="@+id/stat_2"
+                app:layout_constraintStart_toEndOf="@+id/divider_2" />
+
+            <TextView
+                android:id="@+id/stat_detail_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="Steps"
+                android:textColor="#ccc"
+                android:textSize="12sp"
+                app:layout_constraintTop_toBottomOf="@+id/stat_3"
+                app:layout_constraintStart_toStartOf="@+id/stat_3"
+                app:layout_constraintEnd_toEndOf="@+id/stat_3" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

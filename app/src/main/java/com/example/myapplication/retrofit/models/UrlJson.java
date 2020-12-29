@@ -3,6 +3,7 @@ package com.example.myapplication.retrofit.models;
 public class UrlJson {
     private String full;
     private String small;
+    private String regular;
 
     public UrlJson() {
     }
@@ -21,5 +22,13 @@ public class UrlJson {
 
     public void setSmall(String small) {
         this.small = small;
+    }
+
+    public String getRegular() {
+        return regular;
+    }
+
+    public void setRegular(String regular) {
+        this.regular = regular;
     }
 }
