@@ -11,6 +11,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.myapplication.retrofit.models.PhotoJson;
 import com.google.gson.Gson;
@@ -24,6 +26,7 @@ import static com.example.myapplication.utils.MyConfig.SHARED_NAME;
 public class FavoriteActivity extends AppCompatActivity {
 
     RecyclerView  recyclerView;
+    TextView tvEmpty;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
@@ -41,6 +44,7 @@ public class FavoriteActivity extends AppCompatActivity {
         settings = getSharedPreferences(SHARED_NAME, MODE_PRIVATE);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        tvEmpty = (TextView) findViewById(R.id.emptyData);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -66,6 +70,11 @@ public class FavoriteActivity extends AppCompatActivity {
         // specify an adapter (see also next example)
         mAdapter = new AdapterFavorites(activity,settings,photos);
         recyclerView.setAdapter(mAdapter);
+
+        if(photos.size() == 0){
+            tvEmpty.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        }
 
 
 

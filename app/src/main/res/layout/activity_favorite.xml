@@ -7,13 +7,26 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ScrollingActivity"
     tools:showIn="@layout/activity_scrolling">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:spanCount="3" />
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/emptyData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No hay imagenes para mostrar"
+            android:gravity="center"
+            android:textColor="@android:color/holo_red_light"
+            android:visibility="gone"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:spanCount="3" />
+    </LinearLayout>
+
 
 </androidx.core.widget.NestedScrollView>
